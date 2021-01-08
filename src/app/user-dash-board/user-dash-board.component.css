@@ -1,0 +1,26 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+
+.grid {
+  padding-top: 10px;
+  /*display: grid;*/
+  /*grid-template-rows:    1fr 1fr  ;*/
+  /*grid-template-columns: 1fr 1fr  ;*/
+  grid-row-gap:    10px;
+  grid-column-gap: 5px;
+}
+
+.frm2 {
+  background: aliceblue;
+  background-size: 5px;
+  border: red;
+  padding: 25px;
+  filter: alpha(opacity=5);
+  /*width: 20rem;*/
+}
