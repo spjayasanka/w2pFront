@@ -6,6 +6,22 @@
         <button (click)="remove()" class="btn btn-danger">logout</button>
       </h2>
 
+      <!--this the place invitation shows-->
+
+        <div *ngFor="let invitation of invitations">
+          <div *ngIf="invitation.status === 'pending' ">
+          <div class="card">
+            <div style="padding: 10px;">
+              You have an invitation from <b>{{invitation.username}}</b> to join their organization<br>
+              <button class="btn btn-success" (click)="joinToOrganization(invitation)">Join</button>
+              <button class="btn btn-danger" (click)="rejectInvitation(invitation)">Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br><br>
+      <!--this part is used for create organization-->
       <h4>Would you like to create a new organization</h4>
       <button class="btn btn-dark" (click)="showForm()">add Organization</button>
 

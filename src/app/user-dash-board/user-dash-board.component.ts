@@ -5,6 +5,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DOCUMENT} from '@angular/common';
 import {AuthenticationService} from '../service/authentication.service';
+import {Invitation} from '../dto/invitation';
+import {InvitationService} from '../service/invitation.service';
+import {UserOrganization} from '../dto/user-organization';
 
 @Component({
   selector: 'app-user-dash-board',
@@ -19,13 +22,18 @@ export class UserDashBoardComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   organization: Organization = new Organization();
+  userOrganization: UserOrganization = new UserOrganization();
+
+
+  invitations: Invitation[] = [];
 
   constructor(private organizationService: OrganizationService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               @Inject(DOCUMENT) private Doc: Document,
               private auth: AuthenticationService,
-              private router: Router) { }
+              private router: Router,
+              private invitationService: InvitationService) { }
 
   ngOnInit(): void {
     this.organizationService.findOrganizationByUsername().subscribe(organization => {
@@ -36,10 +44,18 @@ export class UserDashBoardComponent implements OnInit {
       this.username = params.get('username');
     });
 
+    this.invitationService.getInvitationByMemberEmail(this.username).subscribe(invitation => {
+      this.invitations = invitation;
+    });
+
+
+
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required]
     });
+
+
   }
 
   get f() { return this.registerForm.controls; }
@@ -77,4 +93,45 @@ export class UserDashBoardComponent implements OnInit {
     this.router.navigate(['/organizationDashBoard/' + organization.id]);
     console.log(organization.id);
   }
+
+  joinToOrganization(invitation: Invitation) {
+
+    this.userOrganization.username = this.username;
+    this.userOrganization.organizationId = invitation.organizationId;
+    invitation.status = 'accepted';
+
+
+    this.invitationService.updateStatus(invitation).subscribe(isOk => {
+      if (isOk){
+        console.log('done');
+      } else {
+        console.log('failed');
+      }
+    });
+
+    this.invitationService.acceptInvitation(this.userOrganization).subscribe(isOk => {
+      if (isOk){
+        alert('added successfully');
+      }else{
+        alert('failed to add');
+      }
+    });
+
+    // console.log(this.userOrganization.OrganizationId);
+    // console.log(this.username);
+    // console.log(invitation.id);
+  }
+
+  rejectInvitation(invitation: Invitation){
+    invitation.status = 'rejected';
+
+    this.invitationService.updateStatus(invitation).subscribe(isOk => {
+      if (isOk){
+        console.log('done');
+      } else {
+        console.log('failed');
+      }
+    });
+  }
+
 }
