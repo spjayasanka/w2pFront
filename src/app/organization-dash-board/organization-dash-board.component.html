@@ -25,9 +25,15 @@
       </form>
 
       <div *ngFor="let invitation of invitations">
-          <li>
-            you have sent an invitations to email; {{invitation.memberEmail}} and it is {{invitation.status}}<br>
-          </li>
+        <div class="card">
+          <div style="padding: 10px">
+            you have sent an invitations to email to <br> <b>{{invitation.memberEmail}}</b> <br> Status:  <b>{{invitation.status}}</b><br>
+            <div>
+              <button (click)="deleteInvitation(invitation)" class="btn btn-outline-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
 

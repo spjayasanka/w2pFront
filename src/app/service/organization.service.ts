@@ -22,7 +22,10 @@ export class OrganizationService {
   getOrganizationByIdAndOrgUserName(id: number): Observable<any> {
     console.log(id);
     return this.http.get<Organization>('http://localhost:8080/getOrganizationByIdAndOrgUserName/' + id);
+  }
 
+  deleteOrganization(id: number): Observable<boolean> {
+    return this.http.delete<boolean>('http://localhost:8080/deleteOrganizationById/' + id);
   }
 
 }

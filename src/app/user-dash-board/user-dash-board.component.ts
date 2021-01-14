@@ -8,6 +8,8 @@ import {AuthenticationService} from '../service/authentication.service';
 import {Invitation} from '../dto/invitation';
 import {InvitationService} from '../service/invitation.service';
 import {UserOrganization} from '../dto/user-organization';
+import {User} from '../dto/User';
+import {UserService} from '../service/User.service';
 
 @Component({
   selector: 'app-user-dash-board',
@@ -24,6 +26,8 @@ export class UserDashBoardComponent implements OnInit {
   organization: Organization = new Organization();
   userOrganization: UserOrganization = new UserOrganization();
 
+  user: User = new User();
+
 
   invitations: Invitation[] = [];
 
@@ -33,7 +37,8 @@ export class UserDashBoardComponent implements OnInit {
               @Inject(DOCUMENT) private Doc: Document,
               private auth: AuthenticationService,
               private router: Router,
-              private invitationService: InvitationService) { }
+              private invitationService: InvitationService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.organizationService.findOrganizationByUsername().subscribe(organization => {
@@ -47,6 +52,12 @@ export class UserDashBoardComponent implements OnInit {
     this.invitationService.getInvitationByMemberEmail(this.username).subscribe(invitation => {
       this.invitations = invitation;
     });
+
+    this.userService.getUserByUsername(this.username).subscribe( user => {
+      this.user = user;
+    });
+
+    // console.log(this.user.firstname);
 
 
 
@@ -130,6 +141,16 @@ export class UserDashBoardComponent implements OnInit {
         console.log('done');
       } else {
         console.log('failed');
+      }
+    });
+  }
+
+  deleteOrganization(organization: Organization) {
+    this.organizationService.deleteOrganization(organization.id).subscribe(isOk => {
+      if (isOk){
+        alert('failed to delete');
+      } else {
+        alert('deleted successfully');
       }
     });
   }

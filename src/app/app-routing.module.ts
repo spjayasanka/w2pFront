@@ -9,6 +9,10 @@ import {OrganizationDashBoardComponent} from './organization-dash-board/organiza
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomeComponent
+  },
+  {
     path: 'home',
     component: HomeComponent
   },

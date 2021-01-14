@@ -34,4 +34,8 @@ export class InvitationService {
     console.log(invitation.status);
     return this.http.put<boolean>('http://localhost:8080/updateStatus/', invitation);
   }
+
+  deleteInvitation(invitation: Invitation): Observable<boolean> {
+    return this.http.delete<boolean>('http://localhost:8080/deleteInvitationById/' + invitation.id);
+  }
 }

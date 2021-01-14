@@ -45,8 +45,7 @@ export class OrganizationDashBoardComponent implements OnInit {
     console.log('ts file ID: ' + this.id);
 
     this.registeredForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]]
     });
 
   }
@@ -72,6 +71,17 @@ export class OrganizationDashBoardComponent implements OnInit {
     console.log(this.invitation.organizationId);
     this.Doc.defaultView.location.reload();
 
+  }
+
+  deleteInvitation(delInvite: Invitation){
+    this.invitationService.deleteInvitation(delInvite).subscribe(isOk => {
+      if (isOk){
+        console.log('failed');
+      } else {
+        console.log('done');
+      }
+    });
+    this.Doc.defaultView.location.reload();
   }
 
 }

@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { UserDashBoardComponent } from './user-dash-board/user-dash-board.component';
 import {BasicAuthHttpInterceptorService} from './service/basic-auth-http-interceptor.service';
 import { OrganizationDashBoardComponent } from './organization-dash-board/organization-dash-board.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { OrganizationDashBoardComponent } from './organization-dash-board/organi
     HomeComponent,
     LoginComponent,
     UserDashBoardComponent,
-    OrganizationDashBoardComponent
+    OrganizationDashBoardComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
