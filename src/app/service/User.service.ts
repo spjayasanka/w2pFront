@@ -17,10 +17,11 @@ export class UserService {
 
   addUser(user: User): Observable<boolean> {
     return this.http.post<boolean>('http://localhost:8080/register', user);
+
   }
 
   getUserByUsername(user: string): Observable<User> {
-    return this.http.get<User>('http://localhost:8080/getUserByUsername/' + user);
+     return this.http.get<User>('http://localhost:8080/getUserByUsername/' + user);
   }
 
 }

@@ -96,7 +96,7 @@ export class UserDashBoardComponent implements OnInit {
 
   remove(){
     this.auth.logOut();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
     sessionStorage.clear();
   }
 
