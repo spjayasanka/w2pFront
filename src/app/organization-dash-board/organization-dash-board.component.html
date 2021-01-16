@@ -36,6 +36,16 @@
 
       </div>
 
+      <div>
+        <h4 style="color: darkgreen">List of Emails of Members in this Organization</h4>
+        <div *ngFor="let userOrganization of userOrganizations">
+          <div class="list">
+
+            <li>{{userOrganization.username}}</li>
+          </div>
+        </div>
+      </div>
+
 
 
     </div>

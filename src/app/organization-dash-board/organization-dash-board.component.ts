@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Invitation} from '../dto/invitation';
 import {InvitationService} from '../service/invitation.service';
 import {DOCUMENT} from '@angular/common';
+import {UserOrganization} from '../dto/user-organization';
 
 @Component({
   selector: 'app-organization-dash-board',
@@ -20,6 +21,7 @@ export class OrganizationDashBoardComponent implements OnInit {
   invitation: Invitation = new Invitation();
   submitted = false;
   invitations: Invitation[] = [];
+  private userOrganizations: UserOrganization[];
 
   constructor(private authenticationService: AuthenticationService,
               private organizationService: OrganizationService,
@@ -41,6 +43,10 @@ export class OrganizationDashBoardComponent implements OnInit {
     this.invitationService.getInvitationByOrganizationId(this.id).subscribe(invitations => {
       this.invitations = invitations;
     });
+
+    this.organizationService.getUsersInOrganization(this.id).subscribe(userOrganizations => {
+      this.userOrganizations = userOrganizations;
+    })
 
     console.log('ts file ID: ' + this.id);
 

@@ -57,6 +57,8 @@ export class UserDashBoardComponent implements OnInit {
       this.user = user;
     });
 
+
+
     // console.log(this.user.firstname);
 
 
@@ -151,6 +153,7 @@ export class UserDashBoardComponent implements OnInit {
         alert('failed to delete');
       } else {
         alert('deleted successfully');
+        this.Doc.defaultView.location.reload();
       }
     });
   }
