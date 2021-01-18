@@ -21,7 +21,7 @@ export class OrganizationService {
   }
 
   getOrganizationByIdAndOrgUserName(id: number): Observable<any> {
-    console.log(id);
+    // console.log(id);
     return this.http.get<Organization>('http://localhost:8080/getOrganizationByIdAndOrgUserName/' + id);
   }
 

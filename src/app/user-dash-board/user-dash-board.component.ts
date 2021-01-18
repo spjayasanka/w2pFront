@@ -25,10 +25,7 @@ export class UserDashBoardComponent implements OnInit {
   submitted = false;
   organization: Organization = new Organization();
   userOrganization: UserOrganization = new UserOrganization();
-
   user: User = new User();
-
-
   invitations: Invitation[] = [];
 
   constructor(private organizationService: OrganizationService,
@@ -104,7 +101,7 @@ export class UserDashBoardComponent implements OnInit {
 
   openOrganization(organization: Organization){
     this.router.navigate(['/organizationDashBoard/' + organization.id]);
-    console.log(organization.id);
+    // console.log(organization.id);
   }
 
   joinToOrganization(invitation: Invitation) {

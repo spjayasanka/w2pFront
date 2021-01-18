@@ -24,3 +24,13 @@ th, td {
   filter: alpha(opacity=5);
   /*width: 20rem;*/
 }
+
+.back{
+  width: 100%;
+  height: 850px;
+  background-color: lightgray;
+}
+.just{
+  display: flex;
+  justify-content:flex-end;
+}

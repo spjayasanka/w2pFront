@@ -1,6 +1,6 @@
-<div class="container">
+
   <div class="row">
-    <div class="col-2"></div>
+    <div class="col-2 back"></div>
     <div class="col" style="padding-top: 100px">
 
         <div class="card" style="padding: 10px">
@@ -8,7 +8,7 @@
           <p>{{organization.description}}</p>
         </div>
       
-      <h3>Add people to your organization:</h3>
+      <h3 style="color: lightseagreen">Add people to your organization:</h3>
       <form [formGroup]="registeredForm">
 
         <div class="form-group">
@@ -23,32 +23,30 @@
         <button type="submit" (click)="sendInvitation()" class="btn btn-primary">Invite</button>
 
       </form>
-
-      <div *ngFor="let invitation of invitations">
-        <div class="card">
-          <div style="padding: 10px">
-            you have sent an invitations to email to <br> <b>{{invitation.memberEmail}}</b> <br> Status:  <b>{{invitation.status}}</b><br>
-            <div>
-              <button (click)="deleteInvitation(invitation)" class="btn btn-outline-danger">Delete</button>
+      <br>
+      <div>
+        <div *ngFor="let invitation of invitations">
+          <div class="card">
+            <div style="padding: 10px">
+              you have sent an invitation email to <b>{{invitation.memberEmail}}</b> <br> Status:  <b>{{invitation.status}}</b><br>
+              <div>
+                <button (click)="deleteInvitation(invitation)" class="btn btn-outline-danger">Delete</button>
+              </div>
             </div>
           </div>
+
         </div>
-
       </div>
-
+      <br>
       <div>
-        <h4 style="color: darkgreen">List of Emails of Members in this Organization</h4>
+        <h4 style="color: lightseagreen">List of Emails of Members in this Organization</h4>
         <div *ngFor="let userOrganization of userOrganizations">
-          <div class="list">
-
             <li>{{userOrganization.username}}</li>
-          </div>
         </div>
       </div>
 
 
 
     </div>
-    <div class="col-2"></div>
+    <div class="col-2 back"></div>
   </div>
-</div>

@@ -21,7 +21,8 @@ export class OrganizationDashBoardComponent implements OnInit {
   invitation: Invitation = new Invitation();
   submitted = false;
   invitations: Invitation[] = [];
-  private userOrganizations: UserOrganization[];
+  userOrganizations: UserOrganization[];
+  toInvite: boolean;
 
   constructor(private authenticationService: AuthenticationService,
               private organizationService: OrganizationService,
@@ -46,9 +47,9 @@ export class OrganizationDashBoardComponent implements OnInit {
 
     this.organizationService.getUsersInOrganization(this.id).subscribe(userOrganizations => {
       this.userOrganizations = userOrganizations;
-    })
+    });
 
-    console.log('ts file ID: ' + this.id);
+    // console.log('ts file ID: ' + this.id);
 
     this.registeredForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
@@ -61,21 +62,21 @@ export class OrganizationDashBoardComponent implements OnInit {
   }
 
   sendInvitation(){
-    this.invitation.organizationId = this.organization.id;
-    this.invitation.status = 'pending';
 
-    this.invitationService.addInvitation(this.invitation).subscribe(isOk => {
-      if (isOk){
-        alert('Invite sent successfully');
-      } else {
-        alert('failed to send invitation');
-      }
-    });
+     this.invitation.organizationId = this.organization.id;
+     this.invitation.status = 'pending';
 
-    console.log(this.invitation.memberEmail);
-
-    console.log(this.invitation.organizationId);
-    this.Doc.defaultView.location.reload();
+     this.invitationService.addInvitation(this.invitation).subscribe(isOk => {
+       if (isOk){
+         alert('Invite sent successfully');
+       } else {
+         alert('failed to send invitation');
+       }
+     });
+     // console.log(this.invitation.memberEmail);
+     //
+     // console.log(this.invitation.organizationId);
+     this.Doc.defaultView.location.reload();
 
   }
 
